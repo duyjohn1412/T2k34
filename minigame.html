@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moving button | Jessica</title>
+    <title>minigame</title>
     <link rel="stylesheet" href="css/stylegame.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -20,13 +21,12 @@
     <a href="minigame.html">Mini game</a>
   </nav>
     <div class="wrapper">
-        <h2 class="question">Chào LÉ</h2>
-        <h4 class="question-prompt">Nếu em không chọn hoặc thoát là bạn bỏ qua</h4>
-	<h4 class="question-prompt">tui không cố ý chê bạn lé </h4>
+        <h2 class="question">Bạn có yêu lớp 12T2 không?</h2>
+        <h4 class="question-prompt">Nếu không chọn hoặc thoát là có</h4>
         <img class="gif" alt="gif" src="https://media.giphy.com/media/PcCh9x9Pz5d2CriuMQ/giphy.gif"/>
         <div class="btn-group">
-            <button class="yes-btn">Bỏ qua😽</button>
-            <button class="no-btn">Đéo</button>
+            <button class="yes-btn">Có😽</button>
+            <button class="no-btn">Không</button>
         </div>
     </div>
     <script>const wrapper = document.querySelector(".wrapper");
@@ -37,9 +37,9 @@ const noBtn = document.querySelector(".no-btn");
 const questionPrompt = document.querySelector(".question-prompt"); // Thêm đoạn này
 
 yesBtn.addEventListener("click", () => {
-  question.innerHTML = "Tôi sẽ không bao giờ nói bạn lé nữa 🥺<br>";
-  gif.src =
-    "https://media.giphy.com/media/vvc1dJPLEU2QOw9cXy/giphy.gif";
+  question.innerHTML = "Cảm ơn, chúng tôi cũng yêu bạn hehe. Hãy quay lại<br>";
+
+  
 
   // Ẩn cả hai nút Yes và No
   yesBtn.style.display = "none";

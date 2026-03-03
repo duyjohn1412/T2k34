@@ -98,3 +98,15 @@ header p {
   opacity: 0.9;
   text-align: center;
 }
+a {
+  color: #b3003c;
+}
+
+a:hover {
+  color: #ff4d6d;
+  text-decoration: underline;
+}
+.gif {
+  display: block;
+  margin: 20px auto;
+}
