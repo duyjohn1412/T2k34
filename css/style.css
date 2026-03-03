@@ -285,7 +285,9 @@ footer {
 
 .card p {
   margin-top: 10px;
-  font-size: 14px;
+  font-size: 18px;
+  color: #d62828;
+  font-weight: 600;
 }
 .card:hover {
   transform: scale(1.03);
