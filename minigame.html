@@ -31,34 +31,71 @@
             <button class="no-btn">Không</button>
         </div>
     </div>
-    <script>const wrapper = document.querySelector(".wrapper");
+    <script>
 const question = document.querySelector(".question");
-const gif = document.querySelector(".gif");
+const questionPrompt = document.querySelector(".question-prompt");
 const yesBtn = document.querySelector(".yes-btn");
 const noBtn = document.querySelector(".no-btn");
-const questionPrompt = document.querySelector(".question-prompt"); // Thêm đoạn này
+
+let step = 0;
+
+const questions = [
+    {
+        title: "Bạn có thích học lớp 12T2 không?",
+        prompt: "Trả lời thật lòng nha 😄"
+    },
+    {
+        title: "Bạn có thấy lớp mình vui không?",
+        prompt: "Nghĩ kỹ trước khi trả lời 👀"
+    },
+    {
+        title: "Bạn có yêu lớp 12T2 không?",
+        prompt: "Nếu không chọn hoặc thoát là có 😏"
+    }
+];
+
+function loadQuestion() {
+    question.innerHTML = questions[step].title;
+    questionPrompt.innerHTML = questions[step].prompt;
+}
 
 yesBtn.addEventListener("click", () => {
-  question.innerHTML = "Cảm ơn, chúng tôi cũng yêu bạn hehe. Hãy quay lại trang chủ để xem tiếp nhé<br>";
+    step++;
 
-  
-
-  // Ẩn cả hai nút Yes và No
-  yesBtn.style.display = "none";
-  noBtn.style.display = "none";
-  questionPrompt.style.display = "none"; // Ẩn dòng chữ khi người dùng nhấn vào nút Yes
+    if (step < questions.length) {
+        loadQuestion();
+    } else {
+        question.innerHTML = "Cảm ơn, chúng tôi cũng yêu bạn hehe ❤️<br>Hãy quay lại trang chủ để xem tiếp nhé";
+        yesBtn.style.display = "none";
+        noBtn.style.display = "none";
+        questionPrompt.style.display = "none";
+    }
 });
 
+noBtn.addEventListener("click", () => {
+    if (step < 2) {
+        step++;
+        loadQuestion();
+    }
+});
+
+// Chỉ kích hoạt hiệu ứng chạy nút ở câu cuối
 noBtn.addEventListener("mouseover", () => {
-  const noBtnRect = noBtn.getBoundingClientRect();
-  const maxX = window.innerWidth - noBtnRect.width;
-  const maxY = window.innerHeight - noBtnRect.height;
+    if (step === 2) {
+        const noBtnRect = noBtn.getBoundingClientRect();
+        const maxX = window.innerWidth - noBtnRect.width;
+        const maxY = window.innerHeight - noBtnRect.height;
 
-  const randomX = Math.floor(Math.random() * maxX);
-  const randomY = Math.floor(Math.random() * maxY);
+        const randomX = Math.floor(Math.random() * maxX);
+        const randomY = Math.floor(Math.random() * maxY);
 
-  noBtn.style.left = randomX + "px";
-  noBtn.style.top = randomY + "px";
-});</script>
+        noBtn.style.position = "absolute";
+        noBtn.style.left = randomX + "px";
+        noBtn.style.top = randomY + "px";
+    }
+});
+
+loadQuestion();
+</script>
 </body>
 </html>
