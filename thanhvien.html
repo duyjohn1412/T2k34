@@ -32,11 +32,18 @@
         <th>Chức vụ</th>
         <th>Tổ</th>        
       </tr>
-      <tr>
-        <td><img src="images/Anhtu.jpg" width="100"></td>
-        <td>Phan Tuyết Anh Tú</td>
-        <td>Lớp trưởng</td>
-        <td>Tổ 4</td>
+      <tr onclick="showInfo(this)"
+    data-name="Phan Tuyết Anh Tú"
+    data-role="Lớp trưởng"
+    data-group="Tổ 4"
+    data-img="images/Anhtu.jpg"
+    data-birth="1/0/2008"
+    data-fact="Chuthich">
+
+  <td><img src="images/Anhtu.jpg" width="100"></td>
+  <td>Phan Tuyết Anh Tú</td>
+  <td>Lớp trưởng</td>
+  <td>Tổ 4</td>
       </tr>
       <tr>
         <td><img src="images/xdai.jpg" width="100"></td>
@@ -261,6 +268,102 @@
 <footer>
   <p>Website lớp 12 Toán 2 – Chuyên Lê Khiết</p>
 </footer>
+<div id="infoBox" class="modal">
+  <div class="modal-content">
 
+    <span class="close" onclick="closeBox()">&times;</span>
+
+    <img id="modalImg" class="avatar">
+
+    <h2 id="modalName"></h2>
+
+    <p><strong>Chức vụ:</strong> <span id="modalRole"></span></p>
+    <p><strong>Tổ:</strong> <span id="modalGroup"></span></p>
+
+    <hr>
+
+    <p><strong>Ngày sinh:</strong> <span id="modalBirth"></span></p>
+    <p><strong>Funfact:</strong> <span id="modalFact"></span></p>
+
+  </div>
+</div>
+  <style>
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  background: white;
+  width: 380px;
+  margin: 7% auto;
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+  animation: zoomIn 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.close {
+  float: right;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+tr {
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+tr:hover {
+  background-color: #f5f5f5;
+  transform: scale(1.01);
+}
+
+/* Animation cho box*/
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes zoomIn {
+  from {transform: scale(0.7); opacity: 0;}
+  to {transform: scale(1); opacity: 1;}
+}
+</style>
+  <script>
+function showInfo(row) {
+  document.getElementById("modalName").innerText = row.dataset.name;
+  document.getElementById("modalRole").innerText = row.dataset.role;
+  document.getElementById("modalGroup").innerText = row.dataset.group;
+  document.getElementById("modalBirth").innerText = row.dataset.birth;
+  document.getElementById("modalFact").innerText = row.dataset.fact;
+  document.getElementById("modalImg").src = row.dataset.img;
+
+  document.getElementById("infoBox").style.display = "block";
+}
+
+function closeBox() {
+  document.getElementById("infoBox").style.display = "none";
+}
+
+window.onclick = function(e) {
+  let modal = document.getElementById("infoBox");
+  if (e.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
 </body>
 </html>
