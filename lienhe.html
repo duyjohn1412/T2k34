@@ -61,13 +61,12 @@ const noBtn = document.querySelector(".no-btn");
 let step = 0;
 
 const questions = [
-    
     {
-        title: "Bạn có yêu lớp 12T2 không?",
-        prompt: "Nghĩ kỹ trước khi trả lời 👀"
+        title: "Bạn có thích lớp 12T2 không?",
+        prompt: "Nếu không chọn hoặc thoát là có"
     },
     {
-        title: "Website này xứng đáng 10 điểm hăm?",
+        title: "Website này có xứng đáng 10 điểm hăm?",
         prompt: "Nếu không chọn hoặc thoát là có"
     }
 ];
@@ -83,29 +82,27 @@ yesBtn.addEventListener("click", () => {
     if (step < questions.length) {
         loadQuestion();
     } else {
-        question.innerHTML = "Cảm ơn, chúng tôi cũng nghĩ vậy hehe ❤️<br>Hãy quay lại trang chủ để xem tiếp nhé";
+        question.innerHTML = "Cảm ơn, chúng tôi cũng yêu bạn hehe ❤️<br>Hãy quay lại trang chủ để xem tiếp nhé";
         yesBtn.style.display = "none";
         noBtn.style.display = "none";
         questionPrompt.style.display = "none";
     }
 });
 
-
-
-
+// 🔥 Nút Không luôn chạy trốn
 noBtn.addEventListener("mouseover", () => {
-    if (step ==0) {
-        const noBtnRect = noBtn.getBoundingClientRect();
-        const maxX = window.innerWidth - noBtnRect.width;
-        const maxY = window.innerHeight - noBtnRect.height;
 
-        const randomX = Math.floor(Math.random() * maxX);
-        const randomY = Math.floor(Math.random() * maxY);
+    const noBtnRect = noBtn.getBoundingClientRect();
+    const maxX = window.innerWidth - noBtnRect.width;
+    const maxY = window.innerHeight - noBtnRect.height;
 
-        noBtn.style.position = "absolute";
-        noBtn.style.left = randomX + "px";
-        noBtn.style.top = randomY + "px";
-    }
+    const randomX = Math.floor(Math.random() * maxX);
+    const randomY = Math.floor(Math.random() * maxY);
+
+    noBtn.style.position = "absolute";
+    noBtn.style.left = randomX + "px";
+    noBtn.style.top = randomY + "px";
+
 });
 
 loadQuestion();
