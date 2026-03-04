@@ -61,16 +61,13 @@ const noBtn = document.querySelector(".no-btn");
 let step = 0;
 
 const questions = [
+    
     {
-        title: "Bạn có phải thành viên lớp 12T2 không?",
-        prompt: "Trả lời thật lòng nha"
-    },
-    {
-        title: "Bạn có yêu lớp tôi không?",
+        title: "Bạn có yêu lớp 12T2 không?",
         prompt: "Nghĩ kỹ trước khi trả lời 👀"
     },
     {
-        title: "Website này xứng đáng 10 điểm không?",
+        title: "Website này xứng đáng 10 điểm hăm?",
         prompt: "Nếu không chọn hoặc thoát là có"
     }
 ];
@@ -93,16 +90,11 @@ yesBtn.addEventListener("click", () => {
     }
 });
 
-noBtn.addEventListener("click", () => {
-    if (step < 2) {
-        step++;
-        loadQuestion();
-    }
-});
 
-//hiệu ứng chạy nút ở câu cuối
+
+
 noBtn.addEventListener("mouseover", () => {
-    if (step === 2) {
+    if (step =0) {
         const noBtnRect = noBtn.getBoundingClientRect();
         const maxX = window.innerWidth - noBtnRect.width;
         const maxY = window.innerHeight - noBtnRect.height;
