@@ -43,13 +43,81 @@
   </section>
 
   <section>
-    <h2>Gửi lời nhắn</h2>
-    <form class = "contact-form">
-      <input type="text" placeholder="Họ và tên"><br><br>
-      <input type="email" placeholder="Email"><br><br>
-      <textarea placeholder="Nội dung" rows="4"></textarea><br><br>
-      <button>Gửi</button>
-    </form>
+    <div class="wrapper">
+        <h2 class="question">Bạn có yêu lớp 12T2 không?</h2>
+        <h4 class="question-prompt">Nếu không chọn hoặc thoát là có</h4>
+        <img class="gif" alt="gif" src="https://media.giphy.com/media/PcCh9x9Pz5d2CriuMQ/giphy.gif"/>
+        <div class="btn-group">
+            <button class="yes-btn">Có</button>
+            <button class="no-btn">Không</button>
+        </div>
+    </div>
+    <script>
+const question = document.querySelector(".question");
+const questionPrompt = document.querySelector(".question-prompt");
+const yesBtn = document.querySelector(".yes-btn");
+const noBtn = document.querySelector(".no-btn");
+
+let step = 0;
+
+const questions = [
+    {
+        title: "Bạn có phải thành viên lớp 12T2 không?",
+        prompt: "Trả lời thật lòng nha"
+    },
+    {
+        title: "Bạn có yêu lớp tôi không?",
+        prompt: "Nghĩ kỹ trước khi trả lời 👀"
+    },
+    {
+        title: "Website này xứng đáng 10 điểm không?",
+        prompt: "Nếu không chọn hoặc thoát là có"
+    }
+];
+
+function loadQuestion() {
+    question.innerHTML = questions[step].title;
+    questionPrompt.innerHTML = questions[step].prompt;
+}
+
+yesBtn.addEventListener("click", () => {
+    step++;
+
+    if (step < questions.length) {
+        loadQuestion();
+    } else {
+        question.innerHTML = "Cảm ơn, chúng tôi cũng nghĩ vậy hehe ❤️<br>Hãy quay lại trang chủ để xem tiếp nhé";
+        yesBtn.style.display = "none";
+        noBtn.style.display = "none";
+        questionPrompt.style.display = "none";
+    }
+});
+
+noBtn.addEventListener("click", () => {
+    if (step < 2) {
+        step++;
+        loadQuestion();
+    }
+});
+
+//hiệu ứng chạy nút ở câu cuối
+noBtn.addEventListener("mouseover", () => {
+    if (step === 2) {
+        const noBtnRect = noBtn.getBoundingClientRect();
+        const maxX = window.innerWidth - noBtnRect.width;
+        const maxY = window.innerHeight - noBtnRect.height;
+
+        const randomX = Math.floor(Math.random() * maxX);
+        const randomY = Math.floor(Math.random() * maxY);
+
+        noBtn.style.position = "absolute";
+        noBtn.style.left = randomX + "px";
+        noBtn.style.top = randomY + "px";
+    }
+});
+
+loadQuestion();
+</script>
   </section>
 
 </main>

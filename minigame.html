@@ -27,7 +27,7 @@
         <h4 class="question-prompt">Nếu không chọn hoặc thoát là có</h4>
         <img class="gif" alt="gif" src="https://media.giphy.com/media/PcCh9x9Pz5d2CriuMQ/giphy.gif"/>
         <div class="btn-group">
-            <button class="yes-btn">Có😽</button>
+            <button class="yes-btn">Có</button>
             <button class="no-btn">Không</button>
         </div>
     </div>
@@ -41,16 +41,16 @@ let step = 0;
 
 const questions = [
     {
-        title: "Bạn có thích học lớp 12T2 không?",
-        prompt: "Trả lời thật lòng nha 😄"
+        title: "Bạn có phải thành viên lớp 12T2 không?",
+        prompt: "Trả lời thật lòng nha"
     },
     {
-        title: "Bạn có thấy lớp mình vui không?",
+        title: "Bạn có yêu lớp tôi không?",
         prompt: "Nghĩ kỹ trước khi trả lời 👀"
     },
     {
-        title: "Bạn có yêu lớp 12T2 không?",
-        prompt: "Nếu không chọn hoặc thoát là có 😏"
+        title: "Website này xứng đáng 10 điểm không?",
+        prompt: "Nếu không chọn hoặc thoát là có"
     }
 ];
 
@@ -65,7 +65,7 @@ yesBtn.addEventListener("click", () => {
     if (step < questions.length) {
         loadQuestion();
     } else {
-        question.innerHTML = "Cảm ơn, chúng tôi cũng yêu bạn hehe ❤️<br>Hãy quay lại trang chủ để xem tiếp nhé";
+        question.innerHTML = "Cảm ơn, chúng tôi cũng nghĩ vậy hehe ❤️<br>Hãy quay lại trang chủ để xem tiếp nhé";
         yesBtn.style.display = "none";
         noBtn.style.display = "none";
         questionPrompt.style.display = "none";
@@ -79,7 +79,7 @@ noBtn.addEventListener("click", () => {
     }
 });
 
-// Chỉ kích hoạt hiệu ứng chạy nút ở câu cuối
+//hiệu ứng chạy nút ở câu cuối
 noBtn.addEventListener("mouseover", () => {
     if (step === 2) {
         const noBtnRect = noBtn.getBoundingClientRect();
