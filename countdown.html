@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Countdown to say goodbye</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <h1>Đếm ngược đến ngày thi THPTQG 2026</h1>
+    <p>Năm học 2025 – 2026</p>
+  </header>
+
+  <!-- MENU -->
+  <nav>
+    <a href="index.html">Trang chủ</a>
+    <a href="thanhvien.html">Thành viên</a>
+    <a href="thanhtich.html">Thành tích và hoạt động</a>
+    <a href="lienhe.html">Liên hệ</a>
+    <a href="minigame.html">Mini game</a>
+  </nav>
+
+  <!-- NỘI DUNG CHÍNH -->
+  <main>
+<div id="countdown-container" style="
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 30px;
+    background: linear-gradient(135deg, #d00000, #9d0208);
+    border-radius: 20px;
+    text-align: center;
+    font-family: Segoe UI, Arial, sans-serif;
+    color: white;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+">
+
+    <h2 style="
+        margin-bottom: 25px;
+        font-size: 26px;
+        letter-spacing: 1px;
+    ">
+        ⏳ Countdown đến 6:00 AM - 11/06/2026
+    </h2>
+
+    <div style="
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    ">
+
+        <div style="background: rgba(255,255,255,0.15); padding:20px; border-radius:15px; width:100px;">
+            <div id="days" style="font-size:28px; font-weight:bold;">0</div>
+            <div style="font-size:14px;">Ngày</div>
+        </div>
+
+        <div style="background: rgba(255,255,255,0.15); padding:20px; border-radius:15px; width:100px;">
+            <div id="hours" style="font-size:28px; font-weight:bold;">0</div>
+            <div style="font-size:14px;">Giờ</div>
+        </div>
+
+        <div style="background: rgba(255,255,255,0.15); padding:20px; border-radius:15px; width:100px;">
+            <div id="minutes" style="font-size:28px; font-weight:bold;">0</div>
+            <div style="font-size:14px;">Phút</div>
+        </div>
+
+        <div style="background: rgba(255,255,255,0.15); padding:20px; border-radius:15px; width:100px;">
+            <div id="seconds" style="font-size:28px; font-weight:bold;">0</div>
+            <div style="font-size:14px;">Giây</div>
+        </div>
+
+    </div>
+
+    <div id="expired" style="
+        margin-top: 25px;
+        font-size: 24px;
+        font-weight: bold;
+        display: none;
+    ">
+        🎉 ĐÃ ĐẾN THỜI ĐIỂM!
+    </div>
+
+</div>
+
+<script>
+const targetDate = new Date("June 11, 2026 06:00:00").getTime();
+
+const timer = setInterval(function () {
+
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    if (distance < 0) {
+        clearInterval(timer);
+        document.getElementById("expired").style.display = "block";
+        document.getElementById("days").innerHTML = "0";
+        document.getElementById("hours").innerHTML = "0";
+        document.getElementById("minutes").innerHTML = "0";
+        document.getElementById("seconds").innerHTML = "0";
+        return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("days").innerHTML = days;
+    document.getElementById("hours").innerHTML = hours;
+    document.getElementById("minutes").innerHTML = minutes;
+    document.getElementById("seconds").innerHTML = seconds;
+
+}, 1000);
+</script>
+
+
+
+
+
+
+
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      Website lớp 12Toán 2 |
+      <a href="https://lekhiet.quangngai.edu.vn" target="_blank">
+        Website Trường
+      </a>
+    </p>
+  </footer>
+
+</body>
+</html>
