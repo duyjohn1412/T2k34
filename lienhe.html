@@ -80,12 +80,18 @@ yesBtn.addEventListener("click", () => {
     step++;
 
     if (step < questions.length) {
+
+        // Reset vị trí nút Không
+        noBtn.style.position = "static";
+        noBtn.style.left = "";
+        noBtn.style.top = "";
+
         loadQuestion();
     } else {
-        question.innerHTML = "Cảm ơn, chúng tôi cũng yêu bạn hehe ❤️<br>Hãy quay lại trang chủ để xem tiếp nhé";
+        question.innerHTML = "Cảm ơn, chúng tôi cũng yêu bạn ❤️";
+        questionPrompt.style.display = "none";
         yesBtn.style.display = "none";
         noBtn.style.display = "none";
-        questionPrompt.style.display = "none";
     }
 });
 
