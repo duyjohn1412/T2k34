@@ -21,20 +21,17 @@ font-family:sans-serif;
 .chat-box{
 width:350px;
 height:500px;
-background:#1a1a1a;
-border-radius:16px;
+background:white;
+border-radius:12px;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
 display:flex;
 flex-direction:column;
 overflow:hidden;
-box-shadow:0 10px 40px rgba(0,0,0,0.4);
-border:1px solid rgba(255,255,255,0.1);
 }
-
-/* vùng tin nhắn */
-.messages{
-flex:1;
-overflow-y:auto;
-padding:12px;
+/*tn*/
+.message{
+background:#ffe4ec;
+color:#333;
 }
 
 /* từng tin nhắn */
@@ -112,6 +109,7 @@ transform:scale(1.05);
     <a href="TKB.html">Thời Khóa Biểu</a>
     <a href="chat.html">Chat</a>
   </nav>
+  <section>
 <div class="chat-box">
 
 <div id="messages" class="messages"></div>
@@ -179,6 +177,6 @@ messagesDiv.scrollTop=messagesDiv.scrollHeight;
 });
 
 </script>
-
+</section>
 </body>
 </html>
