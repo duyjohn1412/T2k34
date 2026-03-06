@@ -5,12 +5,6 @@
   <title>Chat</title>
   <link rel="stylesheet" href="css/stylechat.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-
-<style>
-
-
-
-</style>
 </head>
 
 <body>
@@ -28,70 +22,115 @@
     <a href="TKB.html">Thời Khóa Biểu</a>
     <a href="chat.html">Chat</a>
   </nav>
-  <section>
-<div class="chat-box">
-
-<div id="messages" class="messages"></div>
-
-<div class="input-box">
-<input id="msg" placeholder="Nhập tin nhắn...">
-<button onclick="send()">Gửi</button>
-</div>
-
-</div>
-<section>
 <script type="module">
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+/* ===== IMPORT FIREBASE ===== */
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDQ28VHcJVl2e-dokWJ5F5THaN4-hhXz_c",
-  authDomain: "t2k34-4e8cf.firebaseapp.com",
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+
+import { 
+getFirestore,
+collection,
+addDoc,
+query,
+orderBy,
+onSnapshot
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+
+/* ===== FIREBASE CONFIG ===== */
+
+const firebaseConfig = { apiKey: "AIzaSyDQ28VHcJVl2e-dokWJ5F5THaN4-hhXz_c",
+ authDomain: "t2k34-4e8cf.firebaseapp.com",
   projectId: "t2k34-4e8cf",
-  storageBucket: "t2k34-4e8cf.firebasestorage.app",
-  messagingSenderId: "848499713759",
-  appId: "1:848499713759:web:89771242b4ba241ec8eb6a",
-  measurementId: "G-STBMJ1D4ZT"
-};
+   storageBucket: "t2k34-4e8cf.firebasestorage.app", 
+   messagingSenderId: "848499713759",
+    appId: "1:848499713759:web:89771242b4ba241ec8eb6a",
+     measurementId: "G-STBMJ1D4ZT" };
+
+
+/* ===== KHỞI TẠO FIREBASE ===== */
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-const messagesDiv = document.getElementById("messages");
 
-window.send = async function(){
+/* ===== COLLECTION CHAT ===== */
 
-const text = document.getElementById("msg").value;
+const messagesRef = collection(db,"chat");
 
-if(text.trim()=="") return;
 
-await addDoc(collection(db,"chat"),{
-text:text,
-time:Date.now()
-});
+/* ===== LẤY TÊN NGƯỜI DÙNG ===== */
 
-document.getElementById("msg").value="";
+let myName = localStorage.getItem("chatName");
 
+
+/* ===== GỬI TIN NHẮN ===== */
+
+window.sendMessage = async function(){
+
+  const nameInput = document.getElementById("name");
+  const messageInput = document.getElementById("messageInput");
+
+  const name = nameInput.value || myName || "Ẩn danh";
+  const text = messageInput.value;
+
+  if(text.trim()=="") return;
+
+  localStorage.setItem("chatName",name);
+  myName = name;
+
+  await addDoc(messagesRef,{
+    name:name,
+    text:text,
+    time:Date.now()
+  });
+
+  messageInput.value="";
 }
 
-const q = query(collection(db,"chat"),orderBy("time"));
+
+/* ===== ENTER ĐỂ GỬI ===== */
+
+document.getElementById("messageInput")
+.addEventListener("keypress",function(e){
+  if(e.key==="Enter"){
+    sendMessage();
+  }
+});
+
+
+/* ===== NHẬN TIN NHẮN REALTIME ===== */
+
+const q = query(messagesRef,orderBy("time"));
 
 onSnapshot(q,(snapshot)=>{
 
-messagesDiv.innerHTML="";
+  const box = document.getElementById("messages");
+  box.innerHTML="";
 
-snapshot.forEach(doc=>{
+  snapshot.forEach(doc=>{
 
-const div=document.createElement("div");
-div.className="message";
-div.textContent=doc.data().text;
+    const msg = doc.data();
 
-messagesDiv.appendChild(div);
+    const div = document.createElement("div");
 
-});
+    if(msg.name === myName){
+      div.className="message me";
+    }else{
+      div.className="message other";
+    }
 
-messagesDiv.scrollTop=messagesDiv.scrollHeight;
+    div.innerHTML = `
+      <strong>${msg.name}</strong>
+      ${msg.text}
+    `;
+
+    box.appendChild(div);
+
+  });
+
+  box.scrollTop = box.scrollHeight;
 
 });
 
