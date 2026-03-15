@@ -163,18 +163,34 @@ window.db = getFirestore(app);
 <br><br>
 
 <input id="editFact" placeholder="Sửa fun fact...">
-
-<button onclick="saveFact()">Cập nhật</button>
+<br><br>
+<button class="fact-btn" onclick="saveFact()">Cập nhật</button>
 
   </div>
 </div>
   <style>
+  .fact-btn{
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 2px solid #ff2d55;
+  background: white;
+  color: #ff2d55;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.fact-btn:hover{
+  background: #ff2d55;
+  color: white;
+}
+
 .modal {
   display: none;
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.6);
-  animation: fadeIn 0.3s ease;
+  animation:  fadeIn 0.3s ease;
 }
 
 .modal-content {
