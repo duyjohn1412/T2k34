@@ -25,6 +25,26 @@
   </nav>
 
 <main>
+  <script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+
+import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = { apiKey: "AIzaSyDQ28VHcJVl2e-dokWJ5F5THaN4-hhXz_c",
+ authDomain: "t2k34-4e8cf.firebaseapp.com",
+  projectId: "t2k34-4e8cf",
+   storageBucket: "t2k34-4e8cf.firebasestorage.app", 
+   messagingSenderId: "848499713759",
+    appId: "1:848499713759:web:89771242b4ba241ec8eb6a",
+     measurementId: "G-STBMJ1D4ZT" };
+
+
+const app = initializeApp(firebaseConfig);
+
+window.db = getFirestore(app);
+
+</script>
   <section>
     <h2>Thông tin thành viên lớp</h2>
     <div class="member-list">
@@ -218,6 +238,21 @@
   from {transform: scale(0.7); opacity: 0;}
   to {transform: scale(1); opacity: 1;}
 }
+#editFact{
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 2px solid #ff6b8a;
+  outline: none;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+/* hiệu ứng khi click */
+#editFact:focus{
+  border-color: #ff2d55;
+  box-shadow: 0 0 6px rgba(255,45,85,0.4);
+}
+
 </style>
   <script>
 let currentMember;
