@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classroom Seating Chart</title>
+    <link rel="stylesheet" href="style.css"> <!-- Existing styles -->
+    <style>
+        /* Inline CSS for specific styles */
+        body {
+            background-color: #ff4d6d; /* Background color */
+            color: white; /* Text color */
+            font-family: Arial, sans-serif;
+        }
+        .group {
+            display: inline-block; /* Horizontal arrangement of groups */
+            margin: 20px;
+            border: 2px solid #b3003c; /* Border color for groups */
+            padding: 10px;
+        }
+        .desk {
+            background-color: #b3003c; /* Desk color */
+            margin: 5px;
+            padding: 10px;
+            cursor: move; /* Pointer style for draggable */
+        }
+        .seat {
+            border: 1px solid white;
+            padding: 5px;
+            margin: 3px;
+            background-color: #ff4d6d; /* Seat color */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Classroom Seating Chart</h1>
+    <div id="seating-chart"></div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            // Your Firebase config here
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        // Function to create the seating chart
+        function createSeatingChart() {
+            const chartContainer = document.getElementById('seating-chart');
+            for (let group = 0; group < 4; group++) { // 4 groups
+                const groupDiv = document.createElement('div');
+                groupDiv.className = 'group';
+                groupDiv.innerHTML = `<h2>Group ${group + 1}</h2>`;
+                for (let desk = 0; desk < 6; desk++) { // 6 desks
+                    const deskDiv = document.createElement('div');
+                    deskDiv.className = 'desk';
+                    deskDiv.setAttribute('draggable', true);
+                    deskDiv.ondragstart = drag;
+                    deskDiv.innerHTML = `<h3>Desk ${desk + 1}</h3>`;
+                    for (let seat = 0; seat < 2; seat++) { // 2 seats per desk
+                        const seatDiv = document.createElement('div');
+                        seatDiv.className = 'seat';
+                        seatDiv.innerText = 'Student Name';
+                        seatDiv.setAttribute('draggable', true);
+                        seatDiv.ondragstart = drag;
+                        deskDiv.appendChild(seatDiv);
+                    }
+                    groupDiv.appendChild(deskDiv);
+                }
+                chartContainer.appendChild(groupDiv);
+            }
+        }
+
+        // Drag function
+        function drag(event) {
+            event.dataTransfer.setData("text", event.target.innerText);
+        }
+
+        // Call function to create seating chart
+        createSeatingChart();
+    </script>
+</body>
+</html>
