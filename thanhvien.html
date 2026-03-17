@@ -162,48 +162,49 @@ window.db = getFirestore(app);
 
 <br><br>
 
-<input id="editFact" placeholder="Sửa fun fact...">
-<br><br>
-<button class="fact-btn" onclick="saveFact()">Cập nhật</button>
+<div class="edit-container">
+  <input type="text" id="editFact" placeholder="Funfact">
+  <button class="fact-btn">Cập nhật</button>
+</div>
 
   </div>      
 </div>
   <style>
-#editFact {
+/* Khung bao quanh để kiểm soát vị trí */
+.edit-container {
   width: 100%;
-  margin-top: 8px;
-  display: block; /* Đảm bảo ô nhập chiếm hết một hàng */
+  display: flex;
+  flex-direction: column; /* Ép nút xuống dưới ô nhập */
+  align-items: center;    /* Căn giữa cả ô nhập và nút (nếu muốn) */
+  gap: 12px;             /* Khoảng cách giữa ô nhập và nút */
+}
+
+#editFact {
+  width: 100%;           /* Chiếm hết chiều rộng khung chứa */
   padding: 10px 15px;
-  border: 2px solid #ff708d; /* Màu viền hồng nhạt */
-  border-radius: 15px; /* Bo tròn góc ô nhập */
-  box-sizing: border-box; /* Giúp width 100% không bị tràn viền */
+  border: 2px solid #ff708d;
+  border-radius: 15px;
+  box-sizing: border-box; /* Quan trọng: Giữ input không bị tràn ra ngoài */
   outline: none;
 }
 
 .fact-btn {
-  display: block; /* Buộc nút xuống dòng mới */
-  margin-top: 12px; /* Khoảng cách với ô nhập ở trên */
+  display: inline-block;
   padding: 8px 25px;
-  border-radius: 25px; /* Bo tròn kiểu viên thuốc */
+  border-radius: 25px;
   border: 2px solid #ff2d55;
   background: white;
   color: #ff2d55;
   font-weight: bold;
   cursor: pointer;
   transition: 0.2s;
-  box-shadow: 0 4px 8px rgba(255, 45, 85, 0.2); /* Đổ bóng nhẹ cho giống ảnh */
+  box-shadow: 0 4px 10px rgba(255, 45, 85, 0.2);
 }
 
 .fact-btn:hover {
   background: #ff2d55;
   color: white;
 }
-
-.fact-btn:hover{
-  background: #ff2d55;
-  color: white;
-}
-
 .modal {
   display: none;
   position: fixed;

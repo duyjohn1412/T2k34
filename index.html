@@ -37,10 +37,17 @@
 </audio>
 
 <script>
-  document.addEventListener('click', function() {
+  // Hàm này sẽ thử phát nhạc liên tục cho đến khi người dùng chạm vào màn hình
+  function playMusic() {
     var audio = document.getElementById("myAudio");
-    audio.play();
-  }, { once: true }); // Chỉ chạy một lần duy nhất khi click
+    audio.play().catch(function(error) {
+      console.log("Trình duyệt chặn tự động phát, đợi người dùng tương tác...");
+    });
+  }
+
+  // Phát nhạc ngay khi click vào bất cứ đâu
+  window.addEventListener('click', playMusic, { once: true });
+  window.addEventListener('touchstart', playMusic, { once: true }); // Cho điện thoại
 </script>
 
     <section>
