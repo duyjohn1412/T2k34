@@ -172,33 +172,39 @@ window.db = getFirestore(app);
   <style>
 /* Khung bao quanh để kiểm soát vị trí */
 .edit-container {
-  width: 100%;
   display: flex;
-  flex-direction: column; /* Ép nút xuống dưới ô nhập */
-  align-items: center;    /* Căn giữa cả ô nhập và nút (nếu muốn) */
-  gap: 12px;             /* Khoảng cách giữa ô nhập và nút */
+  align-items: stretch; /* Ép các phần tử con có chiều cao bằng nhau */
+  justify-content: center;
+  gap: 0; /* Nếu muốn dính liền thì để 0, muốn hở nhẹ thì để 5px */
+  width: 100%;
+  margin-top: 10px;
 }
 
 #editFact {
-  width: 100%;           /* Chiếm hết chiều rộng khung chứa */
-  padding: 10px 15px;
-  border: 2px solid #ff708d;
-  border-radius: 15px;
-  box-sizing: border-box; /* Quan trọng: Giữ input không bị tràn ra ngoài */
+  flex: 1; /* Để ô nhập chiếm hết không gian còn lại */
+  height: 40px; /* Cố định chiều cao */
+  padding: 0 15px;
+  border: 2px solid #ff2d55;
+  border-right: none; /* Bỏ viền phải nếu muốn dính liền với nút */
+  border-radius: 20px 0 0 20px; /* Chỉ bo góc trái */
+  box-sizing: border-box;
   outline: none;
 }
 
 .fact-btn {
-  display: inline-block;
-  padding: 8px 25px;
-  border-radius: 25px;
+  height: 40px; /* Phải khớp chính xác với height của #editFact */
+  padding: 0 20px;
   border: 2px solid #ff2d55;
   background: white;
   color: #ff2d55;
+  border-radius: 0 20px 20px 0; /* Chỉ bo góc phải */
   font-weight: bold;
   cursor: pointer;
-  transition: 0.2s;
-  box-shadow: 0 4px 10px rgba(255, 45, 85, 0.2);
+  display: flex;
+  align-items: center; /* Căn chữ "Cập nhật" vào giữa theo chiều dọc */
+  justify-content: center;
+  white-space: nowrap; /* Không cho chữ xuống dòng */
+  box-sizing: border-box;
 }
 
 .fact-btn:hover {
