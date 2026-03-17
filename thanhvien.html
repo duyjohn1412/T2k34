@@ -169,24 +169,34 @@ window.db = getFirestore(app);
   </div>      
 </div>
   <style>
-#editFact{
+#editFact {
   width: 100%;
   margin-top: 8px;
+  display: block; /* Đảm bảo ô nhập chiếm hết một hàng */
+  padding: 10px 15px;
+  border: 2px solid #ff708d; /* Màu viền hồng nhạt */
+  border-radius: 15px; /* Bo tròn góc ô nhập */
+  box-sizing: border-box; /* Giúp width 100% không bị tràn viền */
+  outline: none;
 }
 
-.fact-btn{
-  display: block;
-  margin-top: 12px;
-}
-  .fact-btn{
-  padding: 8px 18px;
-  border-radius: 20px;
+.fact-btn {
+  display: block; /* Buộc nút xuống dòng mới */
+  margin-top: 12px; /* Khoảng cách với ô nhập ở trên */
+  padding: 8px 25px;
+  border-radius: 25px; /* Bo tròn kiểu viên thuốc */
   border: 2px solid #ff2d55;
   background: white;
   color: #ff2d55;
   font-weight: bold;
   cursor: pointer;
   transition: 0.2s;
+  box-shadow: 0 4px 8px rgba(255, 45, 85, 0.2); /* Đổ bóng nhẹ cho giống ảnh */
+}
+
+.fact-btn:hover {
+  background: #ff2d55;
+  color: white;
 }
 
 .fact-btn:hover{
