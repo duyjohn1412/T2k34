@@ -17,14 +17,27 @@
     <a href="index.html">Trang chủ</a>
     <a href="thanhvien.html">Thành viên</a>
     <a href="thanhtich.html">Thành tích và hoạt động</a>
-    
+  <a href="TKB.html">Thời khóa biểu</a>
     <a href="countdown.html">Countdown</a>
-    <a href="TKB.html">Thời Khóa Biểu</a>
+    
     <a href="chat.html">Chat</a>
     <a href="lienhe.html">Liên hệ</a>
   </nav>
 
 <main>
+<script>
+  // Hàm này sẽ thử phát nhạc liên tục cho đến khi người dùng chạm vào màn hình
+  function playMusic() {
+    var audio = document.getElementById("myAudio");
+    audio.play().catch(function(error) {
+      console.log("Trình duyệt chặn tự động phát, đợi người dùng tương tác...");
+    });
+  }
+
+  // Phát nhạc ngay khi click vào bất cứ đâu
+  window.addEventListener('click', playMusic, { once: true });
+  window.addEventListener('touchstart', playMusic, { once: true }); // Cho điện thoại
+</script>
 
 
  <!-- PHẦN CHƯA DÙNG ĐẾN 
